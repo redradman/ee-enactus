@@ -1,0 +1,40 @@
+================================================================================
+ENTREPRENEURSHIP EDUCATION NLP ANALYSIS REPORT
+================================================================================
+
+TOP PERFORMING INSTITUTIONS:
+----------------------------------------
+Most Comprehensive Programs:
+  University of British Columbia - Vancouver: 0.430
+  Lambton College: 0.415
+  Capilano University: 0.405
+
+Highest Innovation Focus:
+  University of British Columbia - Vancouver: 0.736
+  NAIT: 0.639
+  Wilfred Laurier: 0.587
+
+REGIONAL INSIGHTS:
+----------------------------------------
+Central Region Strengths:
+  Entrepreneurship: 0.763
+  Innovation: 0.559
+  Social Impact: 0.482
+
+Eastern Region Strengths:
+  Entrepreneurship: 0.645
+  Innovation: 0.568
+  Social Impact: 0.518
+
+Western Region Strengths:
+  Entrepreneurship: 0.674
+  Innovation: 0.613
+  Leadership: 0.447
+
+KEY FINDINGS:
+----------------------------------------
+Most Balanced Program: Capilano University (Diversity Index: 2.269)
+Highest Innovation Quotient: University of British Columbia - Vancouver (0.638)
+Most Accessible Content: NAIT (Readability: 16.6)
+
+================================================================================
