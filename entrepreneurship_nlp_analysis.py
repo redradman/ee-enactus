@@ -164,33 +164,37 @@ class EntrepreneurshipNLPAnalyzer:
             competency_labels = [competency_name]
             result1 = self.classifier(cleaned_text, competency_labels)
             main_score = result1['scores'][0] if result1['scores'] else 0.0
-            
-            # Method 2: Keyword-based classification (more granular)
-            keyword_labels = keywords[:6]  # Use top 6 keywords
-            if keyword_labels:
-                result2 = self.classifier(cleaned_text, keyword_labels)
-                # Average the top 3 keyword scores
-                top_keyword_scores = sorted(result2['scores'], reverse=True)[:3]
-                keyword_score = np.mean(top_keyword_scores) if top_keyword_scores else 0.0
-            else:
-                keyword_score = 0.0
-            
-            # Method 3: Hypothesis-based approach (most explicit)
-            hypothesis = f"This text discusses {competency_name.lower()} concepts and methods"
-            try:
-                # Use entailment classification directly
-                entailment_result = self.classifier(cleaned_text, [f"{competency_name} concepts", "unrelated content"])
-                hypothesis_score = entailment_result['scores'][0] if entailment_result['scores'] else 0.0
-            except:
-                hypothesis_score = 0.0
-            
-            # Combine scores with weights
-            # Main competency: 50%, Keywords: 30%, Hypothesis: 20%
-            final_score = (0.5 * main_score + 0.3 * keyword_score + 0.2 * hypothesis_score)
-            
+
+            # # Method 2: Keyword-based classification (more granular)
+            # keyword_labels = keywords[:6]  # Use top 6 keywords
+            # if keyword_labels:
+            #     result2 = self.classifier(cleaned_text, keyword_labels)
+            #     # Average the top 3 keyword scores
+            #     top_keyword_scores = sorted(result2['scores'], reverse=True)[:3]
+            #     keyword_score = np.mean(top_keyword_scores) if top_keyword_scores else 0.0
+            # else:
+            #     keyword_score = 0.0
+
+            # # Method 3: Hypothesis-based approach (most explicit)
+            # hypothesis = f"This text discusses {competency_name.lower()} concepts and methods"
+            # try:
+            #     # Use entailment classification directly
+            #     entailment_result = self.classifier(cleaned_text, [f"{competency_name} concepts", "unrelated content"])
+            #     hypothesis_score = entailment_result['scores'][0] if entailment_result['scores'] else 0.0
+            # except:
+            #     hypothesis_score = 0.0
+
+            # Use only direct competency classification
+            final_score = main_score
+
+            # # Combine scores with weights (COMMENTED OUT - now using only direct classification)
+            # # Main competency: 50%, Keywords: 30%, Hypothesis: 20%
+            # final_score = (0.5 * main_score + 0.3 * keyword_score + 0.2 * hypothesis_score)
+
             # Debug info (can be removed later)
             if final_score > 0.1:  # Only print for significant scores
-                print(f"  {competency_name}: main={main_score:.3f}, keywords={keyword_score:.3f}, hypothesis={hypothesis_score:.3f}, final={final_score:.3f}")
+                print(f"  {competency_name}: score={final_score:.3f}")
+                # print(f"  {competency_name}: main={main_score:.3f}, keywords={keyword_score:.3f}, hypothesis={hypothesis_score:.3f}, final={final_score:.3f}")
                 
             return final_score
             
